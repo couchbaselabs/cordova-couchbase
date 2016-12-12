@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": false,
+        "declaration": true,
+        "outDir": "."
+    },
+    "files": [
+        "src/couchbase.ts",
+        "src/database.ts",
+        "src/core.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

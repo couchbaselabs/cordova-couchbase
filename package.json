@@ -1,0 +1,19 @@
+{
+    "name": "cordova-couchbase",
+    "version": "1.0.0",
+    "author": {
+        "name": "Nic Raboy",
+        "url": "https://www.nraboy.com"
+    },
+    "license": "MIT",
+    "scripts": {
+        "setup": "yarn install; typings install",
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "typescript": "^2.1.4"
+    },
+    "dependencies": {
+        "es6-promise": "^4.0.5"
+    }
+}

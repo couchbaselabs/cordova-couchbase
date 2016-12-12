@@ -1,0 +1,10 @@
+node_modules
+typings
+npm-debug.log
+
+.DS_Store*
+Thumbs.db*
+~*
+
+*.js
+*.d.ts
