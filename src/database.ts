@@ -29,7 +29,7 @@ export class Database {
         };
         let designPrefix = "";
         if(designDocumentName.indexOf("_design/") === -1){
-        	designPrefix = "_design/";
+            designPrefix = "_design/";
         }
         return this.makeRequest("PUT", this.databaseUrl + this.databaseName + "/" + designPrefix + designDocumentName, {}, data, true);
     }
@@ -37,7 +37,7 @@ export class Database {
     public getDesignDocument(designDocumentName: string) {
         let designPrefix = "";
         if(designDocumentName.indexOf("_design/") === -1){
-        	designPrefix = "_design/";
+            designPrefix = "_design/";
         }
         return this.makeRequest("GET", this.databaseUrl + this.databaseName + "/" + designPrefix + designDocumentName);
     }
@@ -100,21 +100,22 @@ export class Database {
     }
 
     public getActiveTasks() {
-		return this.makeRequest("GET", this.databaseUrl + "_active_tasks");
-	}
+        return this.makeRequest("GET", this.databaseUrl + "_active_tasks");
+    }
 
-	public makeRequest(method: string, url: string, params?: any, data?: any, isJson?: boolean, withCredentials?: boolean) {
+    public makeRequest(method: string, url: string, params?: any, data?: any, isJson?: boolean, withCredentials?: boolean) {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
             if(params) {
                 url += "?" + this.serializeQueryParameters(params);
             }
             xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    let parsed : any = xhr.response ? JSON.parse(xhr.response) : null;
                     if (xhr.status == 200 || xhr.status == 201) {
-                        resolve(JSON.parse(xhr.response));
+                        resolve(parsed);
                     } else {
-                        reject(JSON.parse(xhr.response));
+                        reject(parsed);
                     }
                 }
             }
@@ -131,7 +132,7 @@ export class Database {
                 xhr.send();
             }
         });
-	}
+    }
 
     private serializeQueryParameters(params: Object): string {
         let serialized: string = "";
